@@ -109,7 +109,11 @@ namespace maxmtr {
             return args[i].toFloat();
         }
         double argAsDouble(const uint8_t i) const {
+#ifdef TEENSYDUINO
+            return args[i].toFloat();
+#else
             return args[i].toDouble();
+#endif
         }
 
         void pop() {
