@@ -68,10 +68,10 @@ void loop() {
 #include <MaxMtrParser.h>
 ```
 
-## Embedded Libraries
+## Dependent Libraries
 
-- [ArxContainer v0.4.0](https://github.com/hideakitai/ArxContainer)
-- [DebugLog v0.6.6](https://github.com/hideakitai/DebugLog)
+- [ArxContainer](https://github.com/hideakitai/ArxContainer)
+- [DebugLog](https://github.com/hideakitai/DebugLog)
 
 ## APIs
 
