@@ -96,5 +96,7 @@ jobs:
             - examples
           libraries: |
             - source-path: ./
+            - name: ArxContainer
+            - name: DebugLog
             - name: SD
           verbose: true

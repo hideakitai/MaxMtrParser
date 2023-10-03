@@ -4,14 +4,14 @@
 
 #include <Arduino.h>
 
-#include "MaxMtrParser/util/DebugLog/DebugLog.h"
+#include <DebugLog.h>
 #ifdef MAXMTRPARSER_DEBUGLOG_ENABLE
-#include "MaxMtrParser/util/DebugLog/DebugLogEnable.h"
+#include <DebugLogEnable.h>
 #else
-#include "MaxMtrParser/util/DebugLog/DebugLogDisable.h"
+#include <DebugLogDisable.h>
 #endif
 
-#include "MaxMtrParser/util/ArxContainer/ArxContainer.h"
+#include <ArxContainer.h>
 
 namespace arduino {
 namespace maxmtr {
@@ -208,6 +208,6 @@ namespace maxmtr {
 
 using MaxMtrParser = arduino::maxmtr::Parser;
 
-#include "MaxMtrParser/util/DebugLog/DebugLogRestoreState.h"
+#include <DebugLogRestoreState.h>
 
 #endif  // ARDUINO_MAXMTRP_PARSER_H
