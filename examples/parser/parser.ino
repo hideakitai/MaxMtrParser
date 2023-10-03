@@ -22,9 +22,9 @@ void setup() {
     Serial.begin(115200);
     delay(2000);
 
-    fs.begin();
-    if (fs.exists(path)) {
-        file = fs.open(path, FILE_READ);
+    fs.begin(SS);
+    if (fs.exists(path.c_str())) {
+        file = fs.open(path.c_str(), FILE_READ);
         if (!file) {
             Serial.print("File open failed: ");
             Serial.println(path);
