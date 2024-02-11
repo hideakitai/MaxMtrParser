@@ -24,21 +24,15 @@ namespace maxmtr {
 #define MAXMTRPARSER_MAX_TRACKS 16
 #endif  // MAXMTRPARSER_MAX_TRACKS
 
-#if ARX_HAVE_LIBSTDCPLUSPLUS >= 201103L  // Have libstdc++11
-    using namespace std;
-#else
-    using namespace arx;
-#endif
-
     class Parser {
         File* file {nullptr};
         uint32_t next_time_ms {0xFFFFFFFF};
 #if ARX_HAVE_LIBSTDCPLUSPLUS >= 201103L  // Have libstdc++11
-        vector<String> args;
-        vector<size_t> track_positions;
+        std::vector<String> args;
+        std::vector<size_t> track_positions;
 #else
-        vector<String, MAXMTRPARSER_MAX_ARGS> args;
-        vector<size_t, MAXMTRPARSER_MAX_TRACKS> track_positions;
+        arx::stdx::vector<String, MAXMTRPARSER_MAX_ARGS> args;
+        arx::stdx::vector<size_t, MAXMTRPARSER_MAX_TRACKS> track_positions;
 #endif
 
     public:
@@ -168,8 +162,8 @@ namespace maxmtr {
                     clear();
                     return false;
                 } else {
-                    size_t token_begin = 0;
-                    size_t token_end = 0;
+                    int token_begin = 0;
+                    int token_end = 0;
                     parse_time(next_line, token_begin, token_end);
                     parse_args(next_line, token_begin, token_end);
                     return true;
@@ -181,13 +175,13 @@ namespace maxmtr {
             }
         }
 
-        void parse_time(const String& next_line, size_t& token_begin, size_t& token_end) {
+        void parse_time(const String& next_line, int& token_begin, int& token_end) {
             token_end = next_line.indexOf(' ', token_begin);
             next_time_ms += next_line.substring(token_begin, token_end).toInt();
             fetch_next_token_index(next_line, token_begin, token_end);
         }
 
-        void parse_args(const String& next_line, size_t& token_begin, size_t& token_end) {
+        void parse_args(const String& next_line, int& token_begin, int& token_end) {
             args.clear();
 
             while (token_end != -1) {
@@ -197,7 +191,7 @@ namespace maxmtr {
             args.emplace_back(next_line.substring(token_begin, next_line.lastIndexOf(';')));
         }
 
-        void fetch_next_token_index(const String& next_line, size_t& token_begin, size_t& token_end) const {
+        void fetch_next_token_index(const String& next_line, int& token_begin, int& token_end) const {
             token_begin = token_end + 1;
             token_end = next_line.indexOf(' ', token_begin);
         }
